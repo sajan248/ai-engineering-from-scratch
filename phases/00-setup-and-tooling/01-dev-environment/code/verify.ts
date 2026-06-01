@@ -15,11 +15,14 @@ type Probe = {
 
 function whichVersion(cmd: string, args: string[] = ["--version"]): ReturnType<ProbeFn> {
   // execFile (not exec) avoids a shell, so user PATH lookups can't be re-interpreted.
+  const resolvedCmd = process.platform === "win32" && cmd === "npx" ? "npx.cmd" : cmd;
+  const isCmd = resolvedCmd.endsWith(".cmd");
   try {
-    const out = execFileSync(cmd, args, {
+    const out = execFileSync(resolvedCmd, args, {
       stdio: ["ignore", "pipe", "ignore"],
       encoding: "utf8",
       timeout: 4000,
+      shell: isCmd,
     });
     return { ok: true, detail: out.trim().split("\n")[0] };
   } catch {

@@ -56,8 +56,16 @@ wsl --install -d Ubuntu-24.04
 We use `uv` — it's 10-100x faster than pip and handles virtual environments automatically.
 
 ```bash
+# macOS/Linux/WSL2
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
+# Windows (PowerShell)
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+Once installed, run:
+
+```bash
 uv python install 3.12
 
 uv venv
@@ -83,7 +91,16 @@ print(f"Vector: {a}, dot product with itself: {np.dot(a, a)}")
 For TypeScript lessons (agents, MCP servers, web apps).
 
 ```bash
+# macOS/Linux/WSL2
 curl -fsSL https://fnm.vercel.app/install | bash
+
+# Windows (PowerShell - winget)
+winget install Schniz.fnm
+```
+
+Once installed, run:
+
+```bash
 fnm install 22
 fnm use 22
 
@@ -97,8 +114,16 @@ node -e "console.log('Node', process.version)"
 For performance-critical lessons (inference, systems).
 
 ```bash
+# macOS/Linux/WSL2
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
+# Windows
+# Download and run rustup-init.exe from https://rustup.rs/
+```
+
+Once installed, verify:
+
+```bash
 rustc --version
 cargo --version
 ```
@@ -108,8 +133,16 @@ cargo --version
 For math-heavy lessons where Julia shines.
 
 ```bash
+# macOS/Linux/WSL2
 curl -fsSL https://install.julialang.org | sh
 
+# Windows (PowerShell)
+winget install Julia.Julia
+```
+
+Once installed, verify:
+
+```bash
 julia -e 'println("Julia ", VERSION)'
 ```
 
